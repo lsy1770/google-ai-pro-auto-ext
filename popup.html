@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="color-scheme" content="light">
+  <title>Google AI Pro 全自动注入器</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>Google AI Pro · 两年零成本</h1>
+      <div class="sub">全自动：识别账号 → 12+6+6 月注入 → 绑卡零元核验 → 取消续订</div>
+    </div>
+    <span id="pill" class="pill idle">空闲</span>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-pane="run">执行</button>
+    <button class="tab" data-pane="accounts">账号</button>
+    <button class="tab" data-pane="config">配置</button>
+    <button class="tab" data-pane="logs">日志</button>
+  </nav>
+
+  <main>
+    <section id="pane-run" class="pane active">
+      <div class="modes">
+        <label class="mode"><input type="radio" name="runmode" value="session" checked><span>当前登录账号</span><i>不登录、不换号</i></label>
+        <label class="mode"><input type="radio" name="runmode" value="queue"><span>账号队列</span><i>需导入账号</i></label>
+      </div>
+
+      <div class="progress">
+        <div class="row"><span id="sesLabel">浏览器当前账号</span><b id="sesEmail">未读取</b></div>
+        <div class="row"><span>Play 套餐 / 到期日</span><b id="sesPlan">—</b></div>
+        <div class="row"><span>当前步骤</span><b id="curStep">—</b></div>
+        <div class="row" id="rowQueue"><span>队列进度</span><b id="curQueue">0 / 0</b></div>
+      </div>
+
+      <div class="btnrow">
+        <button id="btnStart" class="primary">开始执行</button>
+        <button id="btnStop" class="danger">停止</button>
+        <button id="btnProbe">读取当前账号</button>
+        <button id="btnFocus">打开工作标签页</button>
+      </div>
+      <div id="hint" class="hint">已登录模式：直接用本浏览器当前登录的 Google 账号执行，不需要输入邮箱密码。</div>
+
+      <div class="shotwrap">
+        <div class="mini-head">最近截图 <span id="shotTag"></span></div>
+        <img id="shot" alt="">
+      </div>
+
+      <div class="shotwrap">
+        <div class="mini-head">实时日志</div>
+        <pre id="miniLog" class="mini-log"></pre>
+      </div>
+    </section>
+
+    <section id="pane-accounts" class="pane">
+      <div class="note" style="margin-bottom:8px">仅在「账号队列」模式下需要账号。已登录模式会用浏览器当前登录的账号，无需填写邮箱密码。</div>
+      <textarea id="importBox" rows="6" spellcheck="false" placeholder="每行一个账号：
+邮箱----密码----辅助邮箱----TOTP密钥
+分隔符支持 ---- — | / Tab , 空格"></textarea>
+      <div class="btnrow">
+        <button id="btnImport" class="primary">导入 / 更新</button>
+        <button id="btnClearAccounts">清空全部</button>
+      </div>
+      <div class="listhead">已导入 <b id="accCount">0</b> 个账号</div>
+      <ul id="accList" class="acclist"></ul>
+    </section>
+
+    <section id="pane-config" class="pane">
+      <div class="grid">
+        <label class="wide">卡号<input id="cardNumber" autocomplete="off" placeholder="4111 1111 1111 1111"></label>
+        <label>有效期月<input id="cardMonth" maxlength="2" placeholder="09"></label>
+        <label>有效期年<input id="cardYear" maxlength="4" placeholder="2030"></label>
+        <label>CVC<input id="cardCvc" maxlength="4" placeholder="123"></label>
+        <label class="wide">持卡人<input id="cardHolder" placeholder="CARD HOLDER"></label>
+        <label>账单邮编<input id="cardZip" placeholder="97201"></label>
+      </div>
+      <div class="opts">
+        <label class="chk"><input type="checkbox" id="optAutoLogin"> 自动登录 / 2FA</label>
+        <label class="chk"><input type="checkbox" id="optAutoCancel"> 完成后自动取消续订</label>
+        <label class="chk"><input type="checkbox" id="optGuard"> 结账零元保护</label>
+        <label class="chk"><input type="checkbox" id="optStrict"> 严格模式（必须命中“今日应付 0.00”）</label>
+        <label class="chk"><input type="checkbox" id="optStrictVerify"> 核验不到对应月份就中止本层（默认继续并标记待同步）</label>
+      </div>
+      <div class="btnrow">
+        <button id="btnShotPerm">授予截图权限</button>
+        <span id="shotPermState" class="permstate">截图：未授权</span>
+      </div>
+      <div class="note">
+        内置令牌：12m / 6m_ss / 6m / 6m_2 + YouTube 免费附加包（与 automation_engine.py 一致）。
+        免税邮编默认 97201。核验会同时读 Play 与 Google One 两侧日期，取较晚者，允许 7 天误差。
+      </div>
+    </section>
+
+    <section id="pane-logs" class="pane">
+      <div class="btnrow">
+        <button id="btnClearLogs">清空日志</button>
+        <button id="btnCopyLogs">复制日志</button>
+      </div>
+      <pre id="logs" class="logs"></pre>
+    </section>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+﻿# 渚濊禆 / 鏋勫缓浜х墿
+node_modules/
+package-lock.json
+
+# 娴嬭瘯浜х墿
+tests/__pycache__/
+*.pyc
+test-results/
+*.crx
+*.pem
+
+# 缂栬緫鍣ㄤ笌绯荤粺
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 鏈湴瀵嗛挜 / 閰嶇疆锛堢粷涓嶈鎻愪氦锛?secrets/
+*.secret.json
+
+
+# 测试截图产物
+tests/popup-smoke.png

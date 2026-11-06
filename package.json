@@ -1,0 +1,16 @@
+{
+  "name": "google-ai-pro-auto-ext",
+  "version": "2.2.0",
+  "private": true,
+  "description": "Google AI Pro 两年零成本 · 全自动浏览器扩展（MV3）：多来源权益核验的 12+6+6 个月零元叠加自动化",
+  "license": "MIT",
+  "keywords": ["chrome-extension", "manifest-v3", "google-one", "automation", "play-store"],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test tests/core.test.cjs",
+    "test:smoke": "python tests/test_smoke.py",
+    "lint": "node --check core.js && node --check background.js && node --check inject.js && node --check popup.js"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "manifest_version": 3,
+  "name": "Google AI Pro 两年零成本 · 全自动注入器",
+  "version": "2.2.0",
+  "description": "全自动：识别/登录账号 → 注入 12+6+6 个月零元 offer → 零元核验结账 → 取消续订并多来源核验权益。",
+  "minimum_chrome_version": "116",
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "permissions": ["storage", "scripting", "tabs", "alarms"],
+  "optional_host_permissions": ["<all_urls>"],
+  "host_permissions": [
+    "https://one.google.com/*",
+    "https://play.google.com/*",
+    "https://tokenized.play.google.com/*",
+    "https://pay.google.com/*",
+    "https://payments.google.com/*",
+    "https://accounts.google.com/*",
+    "https://gds.google.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_title": "Google AI Pro 全自动注入器",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://one.google.com/*"],
+      "js": ["core.js", "content/bridge.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://one.google.com/*"],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://accounts.google.com/*", "https://gds.google.com/*"],
+      "js": ["core.js", "content/login.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "https://play.google.com/*",
+        "https://tokenized.play.google.com/*",
+        "https://pay.google.com/*",
+        "https://payments.google.com/*"
+      ],
+      "js": ["core.js", "content/play.js", "content/checkout.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

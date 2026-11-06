@@ -1,0 +1,236 @@
+* { box-sizing: border-box; }
+
+body {
+  width: 480px;
+  margin: 0;
+  padding: 14px 14px 16px;
+  font: 12.5px/1.55 -apple-system, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+  color: #22314a;
+  background: linear-gradient(160deg, #eef3ff 0, #f8fafd 200px);
+}
+
+header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 15.5px;
+  margin: 0 0 2px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: #16233a;
+}
+
+.sub { font-size: 10.5px; color: #6b7a91; }
+
+.pill {
+  flex: none;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid #d6deea;
+  background: #f2f5fa;
+  color: #5b6b84;
+  white-space: nowrap;
+}
+.pill.run { background: #e8f6ec; border-color: #bfe3c6; color: #1a7f37; }
+.pill.err { background: #fdecec; border-color: #f3c9c9; color: #b3261e; }
+.pill.stop { background: #fff6e5; border-color: #f0dfb8; color: #8a6a1d; }
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  background: #e7edf7;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.tab {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  padding: 6px 0;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  color: #5b6b84;
+  cursor: pointer;
+}
+.tab.active { background: #fff; color: #1f4bb8; box-shadow: 0 1px 4px rgba(38, 66, 122, 0.14); }
+
+.pane { display: none; }
+.pane.active { display: block; }
+
+.modes { display: flex; gap: 6px; margin-bottom: 10px; }
+.modes .mode {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 9px;
+  border: 1px solid #e0e7f1;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #35455f;
+}
+.modes .mode i { font-style: normal; font-weight: 400; font-size: 10px; color: #8592a6; margin-left: auto; }
+.modes .mode:has(input:checked) { border-color: #2f62d8; background: #eef4ff; color: #1f4bb8; }
+.modes .mode input { width: 13px; height: 13px; margin: 0; accent-color: #2f62d8; }
+
+.progress {
+  background: #fff;
+  border: 1px solid #e3e9f3;
+  border-radius: 12px;
+  padding: 9px 11px;
+  margin-bottom: 10px;
+}
+.progress .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  padding: 2px 0;
+}
+.progress .row span { color: #6b7a91; }
+.progress .row b { font-weight: 600; color: #1f2f4b; text-align: right; word-break: break-all; }
+
+.btnrow { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 7px 11px;
+  border-radius: 9px;
+  border: 1px solid #d6deea;
+  background: #fff;
+  color: #2b3a55;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: #b9c8de; }
+button:disabled { opacity: 0.5; cursor: default; }
+button.primary { background: #2f62d8; border-color: #2f62d8; color: #fff; }
+button.primary:hover:not(:disabled) { background: #2755c0; }
+button.danger { background: #fff; border-color: #e6b6b6; color: #b3261e; }
+
+.hint {
+  font-size: 11px;
+  color: #6b7a91;
+  min-height: 16px;
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+.hint.err { color: #b3261e; }
+.hint.ok { color: #1a7f37; }
+
+.shotwrap {
+  background: #fff;
+  border: 1px solid #e3e9f3;
+  border-radius: 12px;
+  padding: 8px 10px 10px;
+  margin-bottom: 10px;
+}
+
+.mini-head {
+  font-size: 11px;
+  font-weight: 700;
+  color: #55637a;
+  margin-bottom: 6px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.mini-head span { font-weight: 500; color: #8b98ad; }
+
+#shot {
+  display: none;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #e3e9f3;
+}
+
+.mini-log, .logs {
+  margin: 0;
+  font: 11px/1.5 Consolas, "Cascadia Mono", monospace;
+  color: #33425c;
+  background: #f7f9fc;
+  border: 1px solid #e7ecf4;
+  border-radius: 8px;
+  padding: 8px;
+  max-height: 190px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.logs { max-height: 420px; }
+
+textarea, input {
+  width: 100%;
+  font: inherit;
+  color: #22314a;
+  border: 1px solid #d6deea;
+  border-radius: 9px;
+  padding: 7px 9px;
+  background: #fff;
+  margin-bottom: 8px;
+}
+textarea { resize: vertical; font: 11.5px/1.6 Consolas, "Cascadia Mono", monospace; }
+input:focus, textarea:focus { outline: 2px solid #9db8ee; outline-offset: 0; }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8px; }
+.grid label { font-size: 11px; color: #6b7a91; display: block; }
+.grid label.wide { grid-column: 1 / -1; }
+
+.opts { display: flex; flex-direction: column; gap: 4px; margin: 4px 0 8px; }
+.chk { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #35455f; }
+.chk input { width: 14px; height: 14px; margin: 0; accent-color: #2f62d8; }
+
+.note {
+  font-size: 10.5px;
+  color: #7b8798;
+  background: #f4f7fc;
+  border: 1px solid #e7ecf4;
+  border-radius: 9px;
+  padding: 7px 9px;
+}
+
+.listhead { font-size: 11px; color: #6b7a91; margin: 2px 0 6px; }
+.listhead b { color: #22314a; }
+
+.permstate { font-size: 11px; color: #6b7a91; align-self: center; }
+
+.acclist { list-style: none; margin: 0; padding: 0; max-height: 320px; overflow: auto; }
+.acclist li {
+  background: #fff;
+  border: 1px solid #e3e9f3;
+  border-radius: 10px;
+  padding: 7px 9px;
+  margin-bottom: 6px;
+}
+.acclist .top { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.acclist .mail { font-weight: 600; font-size: 11.5px; word-break: break-all; }
+.acclist .meta { font-size: 10.5px; color: #7b8798; margin-top: 2px; word-break: break-all; }
+.acclist .acts { display: flex; gap: 5px; margin-top: 6px; }
+.acclist .acts button { padding: 3px 8px; font-size: 10.5px; border-radius: 7px; }
+
+.chip {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+  background: #f1f4f9;
+  color: #65748c;
+}
+.chip.running { background: #e8f6ec; color: #1a7f37; }
+.chip.completed { background: #e7f0ff; color: #1f4bb8; }
+.chip.error { background: #fdecec; color: #b3261e; }
+.chip.stopped { background: #fff6e5; color: #8a6a1d; }

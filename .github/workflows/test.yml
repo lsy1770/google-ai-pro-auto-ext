@@ -1,0 +1,42 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: node --test tests/core.test.cjs
+
+  syntax-and-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: 语法检查
+        run: |
+          node --check core.js
+          node --check background.js
+          node --check inject.js
+          node --check popup.js
+          node --check content/bridge.js
+          node --check content/login.js
+          node --check content/checkout.js
+          node --check content/play.js
+      - name: 保留名检查（Chrome 拒绝 `_` 前缀）
+        run: |
+          if find . -path ./.git -prune -o -name '_*' -print | grep -q .; then
+            echo "发现以 _ 开头的文件/目录，Chrome 将拒绝加载扩展"; find . -name '_*'; exit 1
+          fi
+      - name: manifest 校验
+        run: node -e "const m=require('./manifest.json');if(m.manifest_version!==3)process.exit(1);console.log('manifest ok', m.version)"
