@@ -25,8 +25,7 @@
 
 ### 文档
 
-- 新增**交流与更新**章节（TG 频道 <https://t.me/wanwandeshop> / 群 <https://t.me/gpt_topup>），
-  并在文首、文末、扩展弹窗底部三处加入引导。
+- README（中英）新增「社区 / Community」小节，列出 TG 频道与群；扩展弹窗底部为同两条链接。
 - 新增完整英文版 `README.en.md`、`CHANGELOG.md`、`LICENSE`、图标与 CI。
 
 ## [2.1.0] — 2026-11-06

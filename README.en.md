@@ -7,10 +7,6 @@
 
 [中文说明](README.md) · [Changelog](CHANGELOG.md)
 
-> 📣 Updates and discussion live on Telegram: channel [wanwandeshop](https://t.me/wanwandeshop) ·
-> group [GPT Topup](https://t.me/gpt_topup) — both are dedicated to researching Google AI / ChatGPT
-> subscriptions, zero-cost stacking, and account & payment environments. Token updates and field notes land there first.
-
 ![Control panel · signed-in account mode](docs/screenshots/popup-session-mode.png)
 
 ---
@@ -18,7 +14,6 @@
 ## Table of contents
 
 - [Features](#features)
-- [Community & updates](#community--updates)
 - [Two run modes](#two-run-modes)
 - [Installation](#installation)
 - [Quick start](#quick-start)
@@ -50,25 +45,6 @@
 | Idempotent re-runs | Every layer reads the entitlement first; layers already satisfied are skipped |
 | Crash recovery | Service-worker keep-alive + watchdog; the run resumes from the current step after a browser sleep |
 | Logs & screenshots | Live log, per-step screenshots (optional permission), results written back to the account card |
-
----
-
-## Community & updates
-
-> When tokens rotate, how to keep an account environment healthy, how Google and Play risk-control behave —
-> nobody figures that out alone. Our Telegram channel and group exist for exactly that research,
-> and every update and known pitfall goes there first.
-
-| | Entry | What's inside |
-| --- | --- | --- |
-| 📣 **Channel · wanwandeshop** | <https://t.me/wanwandeshop> | Releases, token / offer updates, Google & Play policy changes, batch field reports |
-| 💬 **Group · GPT Topup** | <https://t.me/gpt_topup> | Focused on Google AI / ChatGPT subscriptions and top-ups, zero-cost stacking, account & payment environments; errors, stuck orders and root causes get sorted out together |
-
-**Read the channel for updates, ask the group for practice.**
-
-Suggested order: install the extension → check the group for the currently working approach and known pitfalls → then run it.
-Many "failures" are just that day's token or risk-control state changing, and someone in the group has usually
-already found a workaround.
 
 ---
 
@@ -391,15 +367,13 @@ Not supported — it relies on Chromium's MV3 `world: "MAIN"` and `scripting.exe
 
 ---
 
-## Find us
+## Community
 
-| | Entry | Focus |
-| --- | --- | --- |
-| 📣 Telegram channel | <https://t.me/wanwandeshop> | Updates first: releases, tokens, policy changes, field results |
-| 💬 Telegram group | <https://t.me/gpt_topup> | Research on Google AI / ChatGPT subscriptions, top-ups, zero-cost stacking, account & payment environments; ask, report, compare |
+- Channel: <https://t.me/wanwandeshop> — releases and update notes
+- Group: <https://t.me/gpt_topup> — usage questions and experience sharing
 
-Both are single-topic, no noise. Before you run it, skim the group's pinned message — it usually states
-"what works right now" and "what not to touch this week".
+Updates related to this project are posted to the channel first; errors, environment differences and
+failure causes are discussed in the group.
 
 ---
 
