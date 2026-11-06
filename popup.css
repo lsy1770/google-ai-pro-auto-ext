@@ -207,6 +207,27 @@ input:focus, textarea:focus { outline: 2px solid #9db8ee; outline-offset: 0; }
 
 .permstate { font-size: 11px; color: #6b7a91; align-self: center; }
 
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  padding-top: 9px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 10.5px;
+  color: #8592a6;
+}
+.foot .foot-title { font-weight: 700; color: #6b7a91; }
+.foot .dot { color: #b7c1cf; }
+.foot a {
+  color: #2f62d8;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.foot a:hover { text-decoration: underline; }
+.foot a:focus-visible { outline: 2px solid #507ce0; outline-offset: 2px; }
+
 .acclist { list-style: none; margin: 0; padding: 0; max-height: 320px; overflow: auto; }
 .acclist li {
   background: #fff;
